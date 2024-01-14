@@ -1,40 +1,32 @@
-# Import necessary modules from the http.server module
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from aiohttp import web
+import aiohttp_cors  # Import aiohttp_cors
 
-# Set the host and port for the server
-HOST = 'localhost'
-PORT = 8080
+from routes.login_route import login
 
-# Define a custom class MyServer that inherits from BaseHTTPRequestHandler
-class MyServer(BaseHTTPRequestHandler):
-    
-    # Override the do_GET method to handle GET requests
-    def do_GET(self):
-        # Check if the requested path is '/'
-        if self.path == '/':
-            # Redirect '/' to '/index.html'
-            self.path = '/index.html'
-            
-        try:
-            # Attempt to open the requested file and read its content
-            file_to_open = open(self.path[1:]).read()
-            # Send a success response (HTTP 200 OK)
-            self.send_response(200)
-        except:
-            # If the file is not found, set a custom error message
-            file_to_open = 'File not found'
-            # Send a not found response (HTTP 404 Not Found)
-            self.send_response(404)
-            # End the HTTP headers
-            self.end_headers()
-            # Write the error message to the response body
-            self.wfile.write(bytes(file_to_open, 'utf-8'))       
+# Function to set up CORS middleware
+async def setup_cors(app):
+    # Enable CORS for all routes
+    cors = aiohttp_cors.setup(app, defaults={
+        # Configure CORS for all routes with default options
+        "*": aiohttp_cors.ResourceOptions(
+            allow_credentials=True,  # Allow sending credentials (e.g., cookies) with requests
+            expose_headers="*",       # Expose all headers to the client
+            allow_headers="*",        # Allow all headers in requests
+        )
+    })
 
-# Create an instance of HTTPServer with the specified host, port, and custom request handler (MyServer)
-httpd = HTTPServer((HOST, PORT), MyServer)
+    # Add CORS to each route in the app
+    for route in list(app.router.routes()):
+        cors.add(route)
 
-# Print a message indicating that the server is running
-print("Server running on port", PORT)
+# Create an instance of the web application
+app = web.Application()
 
-# Start the server and keep it running indefinitely
-httpd.serve_forever()
+# Add the CORS setup function to the app's startup process
+app.on_startup.append(setup_cors)
+
+# Define a login route
+app.router.add_route('POST', '/login', login)
+
+# Run the web application on port 8080
+web.run_app(app, port=8080)

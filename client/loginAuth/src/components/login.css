@@ -1,0 +1,13 @@
+.login_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+    gap: 20px;
+    border-top: 1px solid gray;
+    padding-top: 20px;
+}
+
+.remember {
+    display: flex;
+}
