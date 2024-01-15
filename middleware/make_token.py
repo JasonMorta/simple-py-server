@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
 import jwt as createToken
-from jose import jwt, jwe
+from jose import jwt, jwe, jwk
 
 
 # Set the secret key
 secret_key = 'my-secret'
 
 def create_jwt_token(email):
-    print("creating a token")
+    #print("creating a token")
 
     # Set the current time
     current_time = datetime.utcnow()
@@ -45,7 +45,7 @@ def create_jwt_token(email):
     }
     
     # Encode JWT token
-    token = createToken.encode(payload, secret_key, algorithm='HS256')
+    token = jwt.encode(payload, secret_key, algorithm='HS256')
 
 
     """ 

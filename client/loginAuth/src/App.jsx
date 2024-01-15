@@ -2,10 +2,27 @@
 
 import './App.css'
 import Login from './components/Login'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { gapi } from 'gapi-script'
+import EmbeddedSite from './components/EmbeddedSite'
 
 function App() {
+
+  const [isVisible, setIsVisible] = useState(false)
+  const [userData, setUserData] = useState({})
+
+  function getUserData(data) {
+    setUserData(data)
+    showIframe()
+
+  }
+
+
+
+  function showIframe() {
+    setIsVisible(prev => !prev)
+  
+  }
 
   useEffect(() => {
     function start() {
@@ -24,7 +41,12 @@ function App() {
 
   return (
     <>
-    <Login />
+    <Login 
+      handleShowIframe={showIframe}
+      handleLogin={getUserData}
+     
+      />
+   {isVisible? < EmbeddedSite  passData={userData}  /> : null}
     </>
   )
 }

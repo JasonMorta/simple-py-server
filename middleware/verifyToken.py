@@ -19,6 +19,3 @@ def jwt_middleware():
     # Return the middleware function
     return jwt_middleware
 
-
-# Export the middleware function
-create_jwt_token = create_jwt_token()

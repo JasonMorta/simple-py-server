@@ -7,7 +7,7 @@ export default function LoginBtn() {
     "467887179455-ac64pkrmv8u1i47ii7sbvj8d89hue4u8.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
-    alert(`Logged in successfully welcome ${res.profileObj.name} 😍.`);
+    //alert(`Logged in successfully welcome ${res.profileObj.name} 😍.`);
     console.log("[Login Success] currentUser:", res.profileObj);
 
     const accessToken = gapi.auth.getToken().access_token
