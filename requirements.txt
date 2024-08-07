@@ -1,0 +1,2 @@
+aiohttp==3.10.1
+aiohttp-middlewares==2.3.0

@@ -9,7 +9,7 @@ A simple python sever, thats uses aiohttp.
 ### Installation
 - Install aiohttp and cors
 ```sh
-pip install aiohttp aiohttp-cors aiohttp_middlewares
+pip install aiohttp aiohttp_middlewares
 
 ```
 
