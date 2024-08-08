@@ -20,7 +20,7 @@ def create_app():
     ))
 
     # Add timeout middleware
-    app.middlewares.append(timeout_middleware(29.5)) # stop the request after 29.5 seconds
+    #app.middlewares.append(timeout_middleware(29.5)) # stop the request after 29.5 seconds
 
     # Setup routes
     setup_routes(app)

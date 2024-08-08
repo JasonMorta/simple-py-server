@@ -6,14 +6,14 @@ async def main_middleware(app, handler):
 
     async def middleware_handler(request):
 
-        print(f"🟢URL: {request.url}")
-        print(f"🟢Method: {request.method}")
-        print(f"🟢Headers: {request.headers}")
-        print(f"🟢Query: {request.query}")
-        print(f"🟢Match info: {request.match_info}")
-        print(f"🟢Body exists: {request.body_exists}")
-        print(f"🟢Content type: {request.content_type}")
-        print(f"🟢Content length: {request.content_length}")
+        # print(f"🟢URL: {request.url}")
+        # print(f"🟢Method: {request.method}")
+        # print(f"🟢Headers: {request.headers}")
+        # print(f"🟢Query: {request.query}")
+        # print(f"🟢Match info: {request.match_info}")
+        # print(f"🟢Body exists: {request.body_exists}")
+        # print(f"🟢Content type: {request.content_type}")
+        # print(f"🟢Content length: {request.content_length}")
 
         # check headers 'api-key' == '123'
         if request.headers.get('api-key') == '123':

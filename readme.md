@@ -18,3 +18,8 @@ pip install aiohttp aiohttp_middlewares
 python server.py
 ```
 
+
+
+On render hosting platform. Commands to run the server are as follows:
+Build Command: pip install -r requirements.txt
+Start Command: python server.py
